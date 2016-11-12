@@ -1,0 +1,13 @@
+﻿--Buscar registro en tabla Hogares
+SELECT * FROM `hogares` WHERE `id_hogar` LIKE '1';
+
+--Buscar registro en tabla Hogares_Subsidiados
+SELECT * FROM `hogares_subsidiados` WHERE `id_hogar` LIKE '1';
+
+--Buscar registro en tabla Pagos_Servicios
+SELECT * FROM `pagos_servicios` WHERE `id_hogar` LIKE '1' OR `id_tiposervicio` = 1;
+
+--Buscar registro en tabla tipos_servicios
+SELECT * FROM `tipos_servicios` WHERE `nombre` LIKE 'Electricidad';
+SELECT * FROM `tipos_servicios` WHERE `nombre` LIKE 'Gas';
+SELECT * FROM `tipos_servicios` WHERE `nombre` LIKE 'Agua'; 

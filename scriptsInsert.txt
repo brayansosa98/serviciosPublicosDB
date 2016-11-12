@@ -1,0 +1,17 @@
+﻿--Crear registro en tabla Hogares
+INSERT INTO `hogares`(`id_hogar`) VALUES (1);
+
+--Crear registro en tabla Hogares_Subsidiados
+INSERT INTO `hogares_subsidiados` (`id_hogar`, `id_tiposervicio`, `valor_subsidio_aplicado`, `limite_pago_aplicado`, `fecha`) VALUES ('1', '1', '5000', '10000', '2016-11-12');
+
+--Crear registro en tabla Pagos_Servicios
+INSERT INTO `pagos_servicios`(`id_hogar`, `id_tiposervicio`, `fecha`, `valor`) VALUES ('1', '1', '2016-11-12', '10000');
+
+--Crear registro en tabla tipos_servicios
+INSERT INTO `tipos_servicios` (`id_servicio`, `nombre`, `valor_subsidio`, `limite_pago`, `calculo_manual`, `fecha_actualizacion`) VALUES ('1', 'Electricidad', '0', '0', 'n', '2016-11-11');
+
+INSERT INTO `tipos_servicios` (`id_servicio`, `nombre`, `valor_subsidio`, `limite_pago`, `calculo_manual`, `fecha_actualizacion`) VALUES ('1', 'Agua', '0', '0', 'n', '2016-11-11');
+
+INSERT INTO `tipos_servicios` (`id_servicio`, `nombre`, `valor_subsidio`, `limite_pago`, `calculo_manual`, `fecha_actualizacion`) VALUES ('1', 'Gas', '0', '0', 'n', '2016-11-11');
+
+

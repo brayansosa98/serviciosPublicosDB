@@ -1,0 +1,68 @@
+﻿CREATE DATABASE SERVICIOSPUBLICOS;
+
+USE DATABASE SERVICIOSPUBLICOS;
+
+CREATE TABLE Hogares
+  ( id_hogar VARCHAR (30) NOT NULL
+  ) ;
+ALTER TABLE Hogares ADD CONSTRAINT Hogares_PK PRIMARY KEY ( id_hogar ) ;
+
+
+CREATE TABLE Hogares_subsidiados
+  (
+    id_hogar                VARCHAR (30) NOT NULL ,
+    id_tiposervicio         INT NOT NULL ,
+    valor_subsidio_aplicado INT NOT NULL ,
+    limite_pago_aplicado    INT NOT NULL ,
+    fecha                   DATE NOT NULL
+  ) ;
+ALTER TABLE Hogares_subsidiados ADD CONSTRAINT Hogares_subsidiados_PK PRIMARY KEY ( id_tiposervicio, id_hogar, fecha ) ;
+
+
+CREATE TABLE Pagos_servicios
+  (
+    id_hogar        VARCHAR (30) NOT NULL ,
+    id_tiposervicio INT NOT NULL ,
+    fecha           DATE NOT NULL ,
+    valor           INT NOT NULL
+  ) ;
+ALTER TABLE Pagos_servicios ADD CONSTRAINT Pagos_servicios_PK PRIMARY KEY ( id_tiposervicio, fecha, id_hogar ) ;
+
+
+CREATE TABLE Tipos_servicios
+  (
+    id_servicio         INT NOT NULL ,
+    nombre              VARCHAR (20) NOT NULL ,
+    valor_subsidio      INT NOT NULL ,
+    limite_pago         INT NOT NULL ,
+    calculo_manual      CHAR (1) NOT NULL ,
+    fecha_actualizacion DATE NOT NULL
+  ) ;
+ALTER TABLE Tipos_servicios ADD CONSTRAINT Tipos_servicios_PK PRIMARY KEY ( id_servicio ) ;
+
+
+ALTER TABLE Hogares_subsidiados ADD CONSTRAINT HSub_idHogPK FOREIGN KEY ( id_hogar ) REFERENCES Hogares ( id_hogar ) ;
+
+ALTER TABLE Hogares_subsidiados ADD CONSTRAINT HSub_idTiSerPK FOREIGN KEY ( id_tiposervicio ) REFERENCES Tipos_servicios ( id_servicio ) ;
+
+ALTER TABLE Pagos_servicios ADD CONSTRAINT PServi_HogaresFK FOREIGN KEY ( id_hogar ) REFERENCES Hogares ( id_hogar ) ;
+
+ALTER TABLE Pagos_servicios ADD CONSTRAINT PServi_TipoServiFK FOREIGN KEY ( id_tiposervicio ) REFERENCES Tipos_servicios ( id_servicio ) ;
+
+
+
+--Crear registro en tabla Hogares
+INSERT INTO `hogares`(`id_hogar`) VALUES (1)
+
+--Crear registro en tabla Hogares_Subsidiados
+INSERT INTO `hogares_subsidiados` (`id_hogar`, `id_tiposervicio`, `valor_subsidio_aplicado`, `limite_pago_aplicado`, `fecha`) VALUES ('1', '1', '5000', '10000', '2016-11-12')
+
+--Crear registro en tabla Pagos_Servicios
+INSERT INTO `pagos_servicios`(`id_hogar`, `id_tiposervicio`, `fecha`, `valor`) VALUES ('1', '1', '2016-11-12', '10000')
+
+--Crear registro en tabla tipos_servicios
+INSERT INTO `tipos_servicios` (`id_servicio`, `nombre`, `valor_subsidio`, `limite_pago`, `calculo_manual`, `fecha_actualizacion`) VALUES ('1', 'Electricidad', '0', '0', 'n', '2016-11-11')
+
+INSERT INTO `tipos_servicios` (`id_servicio`, `nombre`, `valor_subsidio`, `limite_pago`, `calculo_manual`, `fecha_actualizacion`) VALUES ('1', 'Agua', '0', '0', 'n', '2016-11-11')
+
+INSERT INTO `tipos_servicios` (`id_servicio`, `nombre`, `valor_subsidio`, `limite_pago`, `calculo_manual`, `fecha_actualizacion`) VALUES ('1', 'Gas', '0', '0', 'n', '2016-11-11')
