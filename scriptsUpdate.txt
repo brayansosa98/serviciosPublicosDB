@@ -1,0 +1,1 @@
+﻿UPDATE `tipos_servicios` SET `id_servicio`=valor,`valor_subsidio`=valor,`limite_pago`=valor,`calculo_manual`=valor,`fecha_actualizacion`=valor WHERE 1
